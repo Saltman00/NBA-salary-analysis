@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA Salary Predictor 25-26</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fa-solid fa-basketball"></i>
+            </div>
+            <div class="header-text">
+                <h1>NBA Salary Predictor</h1>
+                <p>2025-26 Season</p>
+            </div>
+        </header>
+
+        <main>
+            <div class="search-container panel">
+                <div class="search-box">
+                    <i class="fa-solid fa-search search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="ENTER PLAYER NAME..." autocomplete="off" style="text-transform: uppercase;">
+                    <button id="clearBtn" class="hidden"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.8rem; text-align: left; padding-left: 0.5rem;">
+                    * Please use <strong>English</strong> characters only (e.g. Alperen Sengun)
+                </p>
+                <div id="autocompleteList" class="autocomplete-items hidden"></div>
+            </div>
+
+            <!-- Initial state / Placeholder -->
+            <div id="welcomeState" class="state-panel panel">
+                <i class="fa-solid fa-chart-column"></i>
+                <h2>Predict Player Market Value</h2>
+                <p>Our model analyzed 67 features to determine the true market value of every NBA player. Search for a player above to see if they are overpaid or underpaid.</p>
+            </div>
+
+            <!-- Loading state -->
+            <div id="loadingState" class="state-panel hidden">
+                <div class="spinner"></div>
+                <p>Analyzing player data...</p>
+            </div>
+
+            <!-- Result state -->
+            <div id="resultState" class="result-panel panel hidden">
+                <div class="player-header">
+                    <div class="player-info">
+                        <h2 id="playerName">Player Name</h2>
+                        <div class="player-tags">
+                            <span class="tag team-tag"><i class="fa-solid fa-shirt"></i> <span id="playerTeam">LAL</span></span>
+                            <span class="tag age-tag"><i class="fa-solid fa-cake-candles"></i> <span id="playerAge">39</span> yrs</span>
+                            <span class="tag gp-tag"><i class="fa-solid fa-chart-line"></i> <span id="playerGP">71</span> GP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-label">PTS</div>
+                        <div class="stat-value" id="statPTS">25.7</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">REB</div>
+                        <div class="stat-value" id="statREB">7.3</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">AST</div>
+                        <div class="stat-value" id="statAST">8.3</div>
+                    </div>
+                </div>
+
+                <div class="salary-comparison">
+                    <div class="salary-card actual">
+                        <div class="salary-title">Actual Salary</div>
+                        <div class="salary-amount" id="actualSalary">$0</div>
+                        <div class="salary-subtitle">2025-26 Season</div>
+                    </div>
+                    
+                    <div class="vs-badge">VS</div>
+                    
+                    <div class="salary-card predicted">
+                        <div class="salary-title">Predicted Value</div>
+                        <div class="salary-amount" id="predictedSalary">$0</div>
+                        <div class="salary-subtitle">Model Output</div>
+                    </div>
+                </div>
+
+                <div class="verdict-container" id="verdictContainer">
+                    <div class="verdict-icon" id="verdictIcon">
+                        <i class="fa-solid fa-scale-unbalanced"></i>
+                    </div>
+                    <div class="verdict-text">
+                        <h3 id="verdictTitle">Evaluating...</h3>
+                        <p id="verdictDescription">The model is calculating the value difference.</p>
+                    </div>
+                    <div class="verdict-value" id="verdictDifference">$0</div>
+                </div>
+
+                <!-- Scouting Report Card -->
+                <div class="ai-analysis-card hidden" id="aiAnalysisCard">
+                    <div class="ai-header">
+                        <i class="fa-solid fa-clipboard-list ai-icon"></i>
+                        <h3>Scouting Report & Data Summary</h3>
+                    </div>
+                    <div class="ai-badges" id="aiBadges">
+                        <!-- badges will be injected here -->
+                    </div>
+                    <p class="ai-text" id="aiAnalysisText"></p>
+                </div>
+            </div>
+            
+            <!-- League Insights Dashboard -->
+            <div id="insightsState" class="insights-panel panel hidden">
+                <div class="player-header">
+                    <h2>League Insights</h2>
+                </div>
+                
+                <div class="chart-container" style="position: relative; height:400px; width:100%; margin-bottom: 3rem;">
+                    <h3 class="chart-title">Actual vs Predicted Salary</h3>
+                    <canvas id="scatterChart"></canvas>
+                </div>
+                
+                <div class="chart-container" style="position: relative; height:500px; width:100%;">
+                    <h3 class="chart-title">Most Overpaid & Underpaid Players</h3>
+                    <canvas id="barChart"></canvas>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Built with <i class="fa-solid fa-heart" style="color: #ff4757;"></i> for NBA Data Science</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

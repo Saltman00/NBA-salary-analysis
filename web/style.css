@@ -1,0 +1,528 @@
+:root {
+    /* Base Colors - Clinical Light Mode */
+    --bg-color: #f8fafc;       /* Very light gray/blue background */
+    --panel-bg: #ffffff;       /* Pure white panels */
+    --border-color: #e2e8f0;   /* Light gray borders */
+    
+    /* Header Colors */
+    --header-bg: #0f172a;      /* Navy Blue */
+    --header-accent: #f97316;  /* Orange */
+    
+    /* Text Colors */
+    --text-main: #0f172a;      /* Slate 900 for high contrast */
+    --text-muted: #64748b;     /* Slate 500 */
+    --text-muted-on-bg: #94a3b8; /* For text on navy background */
+    
+    /* Accents */
+    --accent: #0f172a;         /* Navy for interactive elements */
+    --accent-hover: #1e293b;
+    
+    /* Verdict Colors (Flat, Clinical) */
+    --success: #15803d;        /* Green 700 */
+    --success-bg: #f0fdf4;     /* Green 50 */
+    --success-border: #bbf7d0; /* Green 200 */
+    
+    --warning: #b45309;        /* Yellow/Orange 700 */
+    --warning-bg: #fffbeb;     /* Amber 50 */
+    --warning-border: #fde68a; /* Amber 200 */
+    
+    --danger: #b91c1c;         /* Red 700 */
+    --danger-bg: #fef2f2;      /* Red 50 */
+    --danger-border: #fecaca;  /* Red 200 */
+}
+
+/* Base Resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    background-color: var(--header-bg);
+    border-bottom: 4px solid var(--header-accent);
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.logo i {
+    font-size: 2.2rem;
+    color: var(--header-accent);
+    margin: 0;
+}
+
+.header-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+header h1 {
+    font-weight: 800;
+    font-size: 1.8rem;
+    color: #ffffff;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+header p {
+    color: var(--text-muted-on-bg);
+    font-size: 0.85rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1rem 2rem 1rem;
+}
+
+/* Panels */
+.panel {
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px; /* Flat, less rounded */
+    padding: 2.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Very subtle shadow */
+}
+
+/* Search Box */
+.search-container {
+    position: relative;
+    padding: 2rem;
+    z-index: 100;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0.8rem 1.2rem;
+    transition: all 0.2s ease;
+}
+
+.search-box:focus-within {
+    border-color: var(--accent);
+}
+
+.search-icon {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+
+input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    font-size: 1.2rem;
+    outline: none;
+    padding: 0.5rem 0;
+    font-family: inherit;
+    font-weight: 600;
+}
+
+input::placeholder {
+    color: #cbd5e1;
+    font-weight: 400;
+}
+
+#clearBtn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+#clearBtn:hover {
+    color: var(--danger);
+}
+
+/* Autocomplete */
+.autocomplete-items {
+    position: absolute;
+    top: calc(100% - 2rem);
+    left: 2rem;
+    right: 2rem;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    max-height: 250px;
+    overflow-y: auto;
+    z-index: 999;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.autocomplete-items div {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    border-bottom: 1px solid #f1f5f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.autocomplete-items div:hover {
+    background: #f8fafc;
+}
+
+.ac-team {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    background: #f1f5f9;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    font-weight: 600;
+}
+
+/* States */
+.hidden {
+    display: none !important;
+}
+
+.state-panel {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.state-panel i {
+    font-size: 3rem;
+    color: #cbd5e1;
+    margin-bottom: 1rem;
+}
+
+.state-panel h2 {
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+    color: var(--header-bg);
+    text-transform: uppercase;
+}
+
+.state-panel p {
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* Loading Spinner */
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #f1f5f9;
+    border-top-color: var(--accent);
+    border-radius: 50% !important;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1.5rem auto;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Result Panel */
+.player-header {
+    border-bottom: 2px solid var(--bg-color);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.player-header h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: var(--header-bg);
+    text-transform: uppercase;
+}
+
+.player-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: #f1f5f9;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-muted);
+    border: 1px solid #e2e8f0;
+    border-radius: 2px;
+    text-transform: uppercase;
+}
+
+.tag i {
+    color: var(--text-muted);
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px; /* To create thin borders between them */
+    background: var(--border-color);
+    border: 1px solid var(--border-color);
+    margin-bottom: 2.5rem;
+}
+
+.stat-box {
+    background: #ffffff;
+    padding: 1.2rem 1rem;
+    text-align: center;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.stat-value {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--header-bg);
+}
+
+/* Salary Comparison */
+.salary-comparison {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1.5rem 0;
+}
+
+.salary-card {
+    flex: 1;
+    text-align: left;
+}
+
+.salary-card.predicted {
+    text-align: right;
+}
+
+.salary-title {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.salary-amount {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.salary-subtitle {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.vs-badge {
+    padding: 0 2rem;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #cbd5e1;
+}
+
+/* Verdict Container - Flat & Clinical */
+.verdict-container {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.5rem;
+    border-left: 4px solid;
+    background: #f8fafc;
+    margin-bottom: 2rem;
+    border-radius: 0 4px 4px 0;
+}
+
+.verdict-icon {
+    font-size: 1.5rem;
+}
+
+.verdict-text {
+    flex: 1;
+}
+
+.verdict-text h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.verdict-text p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.verdict-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-align: right;
+}
+
+/* Modifiers for Verdicts */
+.is-overpaid {
+    background: var(--danger-bg);
+    border-color: var(--danger);
+}
+.is-overpaid .verdict-icon { color: var(--danger); }
+.is-overpaid h3, .is-overpaid .verdict-value { color: var(--danger); }
+
+.is-underpaid {
+    background: var(--success-bg);
+    border-color: var(--success);
+}
+.is-underpaid .verdict-icon { color: var(--success); }
+.is-underpaid h3, .is-underpaid .verdict-value { color: var(--success); }
+
+.is-fair {
+    background: var(--warning-bg);
+    border-color: var(--warning);
+}
+.is-fair .verdict-icon { color: var(--warning); }
+.is-fair h3, .is-fair .verdict-value { color: var(--warning); }
+
+/* Scouting Report Card (Replaces AI Card) */
+.ai-analysis-card {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-top: 4px solid var(--header-bg);
+    padding: 2rem;
+    border-radius: 4px;
+}
+
+.ai-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 1rem;
+}
+
+.ai-icon {
+    font-size: 1.3rem;
+    color: var(--text-muted);
+}
+
+.ai-header h3 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--header-bg);
+}
+
+.ai-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+}
+
+.ai-badge {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    border-radius: 2px;
+}
+
+.ai-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-main);
+}
+
+footer {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem;
+    }
+    
+    .salary-comparison {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .salary-card {
+        text-align: center !important;
+    }
+    
+    .verdict-container {
+        flex-direction: column;
+        text-align: center;
+        border-left: none;
+        border-top: 4px solid;
+    }
+    
+    .verdict-value {
+        text-align: center;
+    }
+}
+
+/* Insights Panel (Charts) */
+.insights-panel {
+    margin-top: 2rem;
+}
+
+.chart-title {
+    font-size: 1.1rem;
+    color: var(--header-bg);
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-align: center;
+}

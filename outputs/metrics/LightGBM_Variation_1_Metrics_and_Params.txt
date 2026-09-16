@@ -1,0 +1,6 @@
+--- LightGBM_Variation_1 METRICS ---
+Best Parameters: {'model__learning_rate': 0.05, 'model__n_estimators': 100, 'model__num_leaves': 50}
+1. K-Fold Train (Mean) -> R2:  0.9120 | RMSE: $ 4,330,126 | MAE: $ 2,849,038
+2. K-Fold Val (Mean)   -> R2:  0.6696 | RMSE: $ 8,312,895 | MAE: $ 5,679,299
+3. Full Data Overfit   -> R2:  0.9182 | RMSE: $ 4,184,366 | MAE: $ 2,706,311
+4. 100% OOF PREDICTION -> R2:  0.6745 | RMSE: $ 8,345,928 | MAE: $ 5,684,153

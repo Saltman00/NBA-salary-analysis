@@ -1,0 +1,6 @@
+--- XGBoost_Variation_1 METRICS ---
+Best Parameters: {'model__learning_rate': 0.05, 'model__max_depth': 2, 'model__min_child_weight': 7, 'model__n_estimators': 100}
+1. K-Fold Train (Mean) -> R2:  0.8522 | RMSE: $ 5,614,954 | MAE: $ 4,117,240
+2. K-Fold Val (Mean)   -> R2:  0.7016 | RMSE: $ 7,949,596 | MAE: $ 5,635,143
+3. Full Data Overfit   -> R2:  0.8377 | RMSE: $ 5,886,179 | MAE: $ 4,299,302
+4. 100% OOF PREDICTION -> R2:  0.7011 | RMSE: $ 7,988,154 | MAE: $ 5,636,841

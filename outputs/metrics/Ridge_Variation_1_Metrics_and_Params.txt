@@ -1,0 +1,6 @@
+--- Ridge_Variation_1 METRICS ---
+Best Parameters: {'model__alpha': 10.0}
+1. K-Fold Train (Mean) -> R2:  0.7056 | RMSE: $ 7,932,403 | MAE: $ 5,846,245
+2. K-Fold Val (Mean)   -> R2:  0.6473 | RMSE: $ 8,585,892 | MAE: $ 6,270,042
+3. Full Data Overfit   -> R2:  0.7012 | RMSE: $ 7,995,410 | MAE: $ 5,875,690
+4. 100% OOF PREDICTION -> R2:  0.6528 | RMSE: $ 8,619,598 | MAE: $ 6,268,284

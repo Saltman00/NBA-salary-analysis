@@ -1,0 +1,15 @@
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+xgboost
+lightgbm
+shap
+nba_api
+statsmodels
+xlsxwriter
+lxml
+langchain
+langchain-groq
+python-dotenv

@@ -1,0 +1,6 @@
+--- RandomForest_Variation_1 METRICS ---
+Best Parameters: {'model__max_depth': 5, 'model__max_features': 1.0, 'model__min_samples_leaf': 1, 'model__min_samples_split': 10, 'model__n_estimators': 100}
+1. K-Fold Train (Mean) -> R2:  0.8764 | RMSE: $ 5,138,868 | MAE: $ 3,822,044
+2. K-Fold Val (Mean)   -> R2:  0.6885 | RMSE: $ 8,100,375 | MAE: $ 5,770,504
+3. Full Data Overfit   -> R2:  0.8659 | RMSE: $ 5,355,910 | MAE: $ 4,018,663
+4. 100% OOF PREDICTION -> R2:  0.6918 | RMSE: $ 8,120,876 | MAE: $ 5,767,278

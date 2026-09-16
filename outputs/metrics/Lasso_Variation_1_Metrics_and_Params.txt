@@ -1,0 +1,6 @@
+--- Lasso_Variation_1 METRICS ---
+Best Parameters: {'model__alpha': 100.0}
+1. K-Fold Train (Mean) -> R2:  0.7085 | RMSE: $ 7,892,536 | MAE: $ 5,850,231
+2. K-Fold Val (Mean)   -> R2:  0.6404 | RMSE: $ 8,659,539 | MAE: $ 6,340,323
+3. Full Data Overfit   -> R2:  0.7033 | RMSE: $ 7,967,930 | MAE: $ 5,892,259
+4. 100% OOF PREDICTION -> R2:  0.6464 | RMSE: $ 8,698,836 | MAE: $ 6,338,584
