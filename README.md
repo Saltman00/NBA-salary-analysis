@@ -1,4 +1,4 @@
-# 🏀 NBA Player Salary Prediction (2025-26 Season)
+#  NBA Player Salary Prediction (2025-26 Season)
 
 A machine learning project that predicts NBA player salaries based on their in-game performance statistics. This project demonstrates an end-to-end data science pipeline: from web scraping and data wrangling to feature engineering, predictive modeling, LLM-powered scouting reports, and an interactive web dashboard.
 
@@ -13,7 +13,7 @@ A machine learning project that predicts NBA player salaries based on their in-g
 | **LLM Integration** | Automated scouting reports generated via LangChain + Groq (GPT-OSS-120B) for every player |
 | **Web Dashboard** | Interactive player lookup with Chart.js visualizations (Scatter Plot & Bar Chart) |
 
-## 🔬 Methodology & Approach
+##  Methodology & Approach
 
 This project strictly adheres to professional machine learning best practices to prevent data leakage and ensure realistic results:
 
@@ -23,7 +23,7 @@ This project strictly adheres to professional machine learning best practices to
 - **Leakage-Free Pipeline:** Data scaling (`StandardScaler`) and encoding (`OneHotEncoder`) were placed inside a scikit-learn `Pipeline` alongside the model. This guarantees that feature transformations are learned only on the training folds and applied blindly to the validation folds.
 - **Out-of-Fold (OOF) Predictions:** Instead of evaluating models on data they have already seen (which causes artificial overfitting), we use `cross_val_predict` to generate predictions for players *only* when they are in the hold-out test set. The reported metrics reflect the true, unbiased market value predictions.
 
-## 🏆 Model Results (Out-of-Fold Predictions)
+##  Model Results (Out-of-Fold Predictions)
 
 We compared 5 standalone models and a Meta-Model Stacking Ensemble. 
 
@@ -40,7 +40,7 @@ We compared 5 standalone models and a Meta-Model Stacking Ensemble.
 > **Why did XGBoost beat the Ensemble?**
 > We built a Stacking Ensemble combining XGBoost, Random Forest, and Lasso, utilizing Ridge as the final meta-estimator. However, XGBoost alone slightly outperformed the ensemble. This often happens when the base models are highly correlated in their predictions, meaning the ensemble doesn't gain any new "perspectives" and instead just dilutes the sheer predictive power of the best standalone model (XGBoost).
 
-## 💡 Key EDA Insights (Data Storytelling)
+##  Key EDA Insights (Data Storytelling)
 
 During the correlation analysis, several highly correlated feature pairs (>0.80) were discovered. Beyond the obvious ones (like Made Shots vs. Points), the data revealed some interesting basketball truths:
 
@@ -51,7 +51,7 @@ During the correlation analysis, several highly correlated feature pairs (>0.80)
 - **The "Ultramega Superstar" Outlier Effect:** Generational talents (e.g., Jokić, Dončić, Antetokounmpo) literally break the model's boundaries. Because their stats exist so far outside the normal distribution, the model often predicts their true market value to be significantly higher than the NBA's actual "Max Contract" cap. They are simply too good for standard regression limits.
 - **The Injury Bug (2025-26 Season):** Several major All-Stars played around 20-30 games this season due to injuries. Since they passed our 15-game filter, their per-game stats look like superstar stats, but their total impact is lower. This created fascinating edge cases for the model when predicting their true market value.
 
-## 🤖 LLM-Powered Scouting Reports
+##  LLM-Powered Scouting Reports
 
 After the XGBoost model generates salary predictions, we use **LangChain + Groq (GPT-OSS-120B)** to automatically write professional scouting reports for each player. The LLM receives:
 - The player's actual salary vs. model prediction
@@ -63,7 +63,7 @@ It then generates a 2-3 sentence, front-office-style contract evaluation explain
 > [!NOTE]
 > The scouting reports for "Fairly Paid" players (within ±10% of their actual salary) are hidden on the web dashboard, since the LLM only receives binary Overpaid/Underpaid labels and cannot accurately justify a "fair" verdict.
 
-## 🌐 Interactive Web Dashboard
+##  Interactive Web Dashboard
 
 A fully static web application (HTML/CSS/JS) that lets users:
 - **Search** for any NBA player and view their salary prediction, verdict, and scouting report
@@ -73,7 +73,7 @@ A fully static web application (HTML/CSS/JS) that lets users:
 
 The dashboard requires no backend server — just open `web/index.html` in a browser via a local server (e.g., VS Code Live Server).
 
-## 📈 Key Visualizations
+##  Key Visualizations
 
 ### Feature Distributions vs Salary
 Shows the distribution of all numeric features in the dataset and their bivariate relationship with the mean target variable (Salary).
@@ -88,7 +88,7 @@ Shows which features have the strongest impact on salary predictions:
 ### Feature Importance (XGBoost)
 ![XGBoost Feature Importance](outputs/plots/XGBoost_Variation_1_Feature_Importance.png)
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 NBA_project/
@@ -117,7 +117,7 @@ NBA_project/
         └── predictions.json          # Full player data with LLM analyses
 ```
 
-## 🔧 Installation & Setup
+##  Installation & Setup
 
 ```bash
 # 1. Clone the repository
@@ -137,7 +137,7 @@ cp .env.example .env
 # Edit .env and add your LangSmith and Groq API keys
 ```
 
-## 🚀 Usage
+##  Usage
 
 Run the notebooks in order:
 
@@ -149,12 +149,12 @@ Run the notebooks in order:
 
 To view the web dashboard, open `web/index.html` using a local server (e.g., VS Code Live Server extension).
 
-## 🗂️ Data Sources
+##  Data Sources
 
 - **Player Statistics**: [NBA Official API](https://www.nba.com/) via [`nba_api`](https://github.com/swar/nba_api) Python package
 - **Salary Data**: [Basketball Reference](https://www.basketball-reference.com/contracts/players.html) (web scraping)
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - **Language**: Python 3.10+
 - **ML Frameworks**: scikit-learn, XGBoost, LightGBM
